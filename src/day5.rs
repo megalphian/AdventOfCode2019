@@ -12,8 +12,14 @@ fn main() {
                                     .map(|s| s.trim().parse().unwrap())
                                     .collect();
 
-    let inputs : Vec<i32> = [1].to_vec();
-
-    let mut int_code1 = IntCodeMemory::new_with_input(&memory_values, &inputs);
+    
+    let inputs1 : Vec<i32> = [1].to_vec();
+    println!("Part1:");
+    let mut int_code1 = IntCodeMemory::_new_with_input(&memory_values, &inputs1);
     int_code1.run_program();
+
+    let inputs2 : Vec<i32> = [5].to_vec();
+    println!("Part2:");
+    let mut int_code2 = IntCodeMemory::_new_with_input(&memory_values, &inputs2);
+    int_code2.run_program();
 }

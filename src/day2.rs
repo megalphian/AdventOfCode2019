@@ -31,7 +31,7 @@ fn main() {
                                     .map(|s| s.trim().parse().unwrap())
                                     .collect();
 
-    let mut int_code1 = IntCodeMemory::new(&memory_values);
+    let mut int_code1 = IntCodeMemory::_new(&memory_values);
     let part1_result = int_code1.run_opcode_instructions(12,2);
     let part2_result = search_protocol(&memory_values, 19690720);
 

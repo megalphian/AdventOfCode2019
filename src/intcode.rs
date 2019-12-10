@@ -1,8 +1,26 @@
-mod intcode {
-    impl IntCodeComputer {
-        fn run_opcode_instructions(_command_list : &Vec<i32>, noun : i32, verb : i32) -> i32 {
+pub mod intcode {
+
+    pub trait IntCodeCompute {
+        fn run_opcode_instructions(&self, noun : i32, verb : i32) -> i32;
+    }
+
+    pub struct IntCodeMemory {
+        _command_list : Vec<i32>
+    }
+
+    impl IntCodeMemory {
+        pub fn new(_command_list : &Vec<i32>) -> IntCodeMemory {
+            IntCodeMemory {
+                _command_list: _command_list.to_vec()
+            }
+        }
+    }
+
+    impl IntCodeCompute for IntCodeMemory {
+
+        fn run_opcode_instructions(&self, noun : i32, verb : i32) -> i32 {
     
-            let mut cached_command_list : Vec<i32> = _command_list.to_vec();
+            let mut cached_command_list : Vec<i32> = self._command_list.clone();
             cached_command_list[1] = noun;
             cached_command_list[2] = verb;
         

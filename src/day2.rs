@@ -1,7 +1,7 @@
 use std::fs;
 mod intcode;
 use intcode::intcode::IntCodeMemory;
-use intcode::intcode::IntCodeCompute;
+use intcode::intcode::ProgramNounVerb;
 
 fn search_protocol(int_code : IntCodeMemory, final_val: i32) -> i32
 {

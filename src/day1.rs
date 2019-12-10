@@ -5,7 +5,7 @@ fn calculate_fuel( mass : i32) -> i32 {
 }
 
 fn main() {
-  let filename = "input.txt";
+  let filename = "data/input1.txt";
   
   let mut _part_1_total_fuel : i32 = 0;
   let mut _part_2_total_fuel : i32 = 0;

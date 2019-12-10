@@ -47,7 +47,7 @@ fn search_protocol(_command_list : &Vec<i32>, final_val: i32) -> i32
 }
 
 fn main() {
-    let filename = "input.txt";
+    let filename = "data/input2.txt";
 
     let _file_contents = fs::read_to_string(filename).unwrap();
     let memory_values : Vec<i32> = _file_contents

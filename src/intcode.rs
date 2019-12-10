@@ -7,13 +7,22 @@ pub mod intcode {
     }
 
     pub struct IntCodeMemory {
-        command_list : Vec<i32>
+        command_list : Vec<i32>,
+        inputs : Vec<i32>
     }
 
     impl IntCodeMemory {
         pub fn new(command_list : &Vec<i32>) -> IntCodeMemory {
             IntCodeMemory {
-                command_list: command_list.to_vec()
+                command_list: command_list.to_vec(),
+                inputs: Vec::<i32>::new()
+            }
+        }
+
+        pub fn new_with_input(command_list : &Vec<i32>, inputs : &Vec<i32>) -> IntCodeMemory {
+            IntCodeMemory {
+                command_list: command_list.to_vec(),
+                inputs: inputs.to_vec()
             }
         }
     }
@@ -30,6 +39,9 @@ pub mod intcode {
 
         fn run_program(&mut self) -> i32 {
             let mut x : usize = 0;
+            let mut input_index : usize = 0;
+            let mut outputs = Vec::<i32>::new();
+
             loop{
                 match self.command_list[x] % 100 {
                     99 => break,
@@ -46,12 +58,21 @@ pub mod intcode {
                         x += 4;
                     }
                     03 => {
-    
+                        let out_pos = self.command_list[x+1];
+                        self.command_list[out_pos as usize] = self.inputs[input_index];
+                        input_index += 1;
+                        x += 2;
+                    }
+                    04 => {
+                        let out_pos = self.command_list[x+1];
+                        outputs.push(self.command_list[out_pos as usize]);
                         x += 2;
                     }
                     _ => panic!("Unrecognized opcode {} {}", self.command_list[x], x)
                 }
             }
+
+            println!("Outputs: {:?}", outputs);
 
             self.command_list[0]
         }
